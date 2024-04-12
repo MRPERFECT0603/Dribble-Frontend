@@ -18,18 +18,18 @@ function QuestionPage() {
     const [showText2, setShowText2] = useState(false);
     const [showText3, setShowText3] = useState(false);
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-        console.log(email);
-        const desc = {
-            username: username,
-            description: desc
-        };
-        const response = await axios.post('http://localhost:8000/api/user/create', desc);
-        
-        navigate('/home', { state: { email: email } });
+    // const handleSubmit = async(e) => {
+    //     e.preventDefault();
+    //     console.log(email);
+    //     const desc = {
+    //         username: username,
+    //         description: desc
+    //     };
+    //     const response = await axios.post('http://localhost:8000/api/user/create', desc);
 
-    }
+    //     navigate('/home', { state: { email: email } });
+
+    // }
 
     $(document).on('change', 'input[type="checkbox"]', function () {
         const $parent = $(this).closest('.fixed-container');
@@ -159,7 +159,7 @@ function QuestionPage() {
             }>
                 <div className='flex mt-20 mx-auto'>
 
-                    <button onClick={handleSubmit} className=" btn bg-pink-300 text-white p-3 px-12 my-10 rounded-xl mx-auto" type="submit">Create Account</button>
+                    <button className=" btn bg-pink-300 text-white p-3 px-12 my-10 rounded-xl mx-auto" type="submit">Create Account</button>
 
                 </div>
             </Link>

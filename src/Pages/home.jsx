@@ -34,7 +34,7 @@ function Home() {
         <div>
 
             <Navbar />
-            <Hero />
+            <Hero email = {email}/>
             <FooterTable />
             <Footer />
         </div>

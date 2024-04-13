@@ -2,8 +2,8 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { makeRequest } from '../axios';
-function SignupRightPanel() {
 
+function SignupRightPanel() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -19,7 +19,7 @@ function SignupRightPanel() {
         });
     };
 
-
+    const [showText, setShowText] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,24 +30,24 @@ function SignupRightPanel() {
             navigate('/acc', { state: { username: formData.username, email: formData.email } });
         } catch (error) {
             console.error('Error:', error);
+            setShowText(true);
         }
-
-
     };
 
     return (
-        <div className='w-full'>
+        <div className='w-full overflow-y-auto'>
             <div className='flex justify-end w-full px-10 py-8'>
-                <p className=' font-light text-base'>Already a member? <span className='text-blue'>Sign In</span></p>
+                <p className='font-light text-base'>Already a member? <span className='text-blue'>Sign In</span></p>
             </div>
             <div className='mx-4 md:mx-48 justify-center'>
                 <div className='text-xl'>
                     <h1 className='text-3xl font-bold'>Sign up to Dribbble</h1>
                 </div>
                 <div >
-                    <h3 className='text-s font-light text-red my-5'>Username has already been taken</h3>
+                    <h3 className='text-s font-light text-red my-5'>
+                        {showText && "Username has already been taken"}</h3>
                 </div>
-                <div className='pr-4 md:pr-20 mx-auto '>
+                <div className='pr-4 md:pr-20 mx-auto'>
                     <form className='mr-4 md:mr-10' onSubmit={handleSubmit}>
                         <div className='flex-col md:flex md:flex-row md:justify-between py-5'>
                             <div className='w-full md:w-1/2 md:pr-2'>
@@ -77,11 +77,11 @@ function SignupRightPanel() {
                         </div>
                         <div className='flex gap-3'>
                             <input className='flex mb-12' type="checkbox" />
-                            <p className='text-wrap  text-gray-600 font-light text-base '>
+                            <p className='text-wrap  text-gray-600 font-light text-base'>
                                 Creating an account means you're okay with our <span className='text-blue'>Terms of Service, Privacy Policy,</span> and our default<span className='text-blue'> Notification Settings.</span>
                             </p>
                         </div>
-                        <button className=" bg-pink-500 hover:bg-pink-700 text-white p-3 px-12 my-10 rounded-xl" type="submit">Create Account</button>
+                        <button className="bg-pink-500 hover:bg-pink-700 text-white p-3 px-12 my-10 rounded-xl" type="submit">Create Account</button>
                     </form>
                     <div>
                         <p className='text-wrap  text-gray-600 font-light text-xs'>This site is protected by reCAPTCHA and the Google <span className='text-blue'>Privacy Policy</span> and <span className='text-blue'>Terms of Service</span> apply.</p>
@@ -89,7 +89,7 @@ function SignupRightPanel() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default SignupRightPanel;

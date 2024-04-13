@@ -16,7 +16,7 @@ function SignupLeftPanel() {
             <div className='flex basis-1/2 my-6 py-8'>
                 <img className=" bg-blend-saturation backdrop-blur-3xl" src="https://rrgraphdesign.com/blog/wp-content/uploads/2023/03/graphic-design-for-seo.jpg" alt="" />
             </div>
-            <div className='flex pt-20 mx-8 mt-10 text-homeText font-light'>
+            <div className='flex  pt-20 mx-8 mt-10 sm:my-4 text-homeText font-light'>
                 <p>Art By <span className='underline'>Vivek Shaurya</span></p>
             </div>
         </div>

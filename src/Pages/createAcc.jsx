@@ -3,7 +3,8 @@ import logo2 from '../assets/logo2.png';
 import axios from 'axios';
 import { useLocation, useNavigate } from "react-router-dom";
 import { makeRequest } from '../axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 function CreateAcc() {
 
@@ -20,6 +21,24 @@ function CreateAcc() {
     console.log(username);
     const [imageUpload, setImageUpload] = useState("");
     const [locationData, setLocationData] = useState("");
+    const [imagePreview, setImagePreview] = useState(null); // State to hold the image preview
+
+    const handleImageChange = (e) => {
+        const selectedImage = e.target.files[0];
+        setImageUpload(selectedImage);
+
+        // Preview the selected image
+        if (selectedImage) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(selectedImage);
+        } else {
+            setImagePreview(null);
+        }
+    };
+
     const uploadImage = async () => {
         const formData = new FormData();
         formData.append("file", imageUpload);
@@ -57,7 +76,7 @@ function CreateAcc() {
                 location: locationData,
                 avatar: imageUrl,
             };
-    
+
             console.log(Data);
             // console.log("FormData contents:");
             // for (let pair of data.entries()) {
@@ -89,19 +108,23 @@ function CreateAcc() {
                     <form action="">
                         <label htmlFor="image" className='block  text-xl md:text-2xl font-bold my-1 pb-5'>Add an avatar</label>
                         <div className='flex flex-col md:flex-row gap-8'>
-                            <div className='h-44 w-44 border-dashed border-gray-400 border-4 rounded-full'>
-                                {/* <img className="flex md:h-48 h-24" src={imageLaod} alt="" /> */}
+                            <div className='h-44 w-44 border-dashed border-gray-400 border-4 rounded-full flex justify-center items-center'>
+                                {imagePreview ? (
+                                    <img className="w-full h-full rounded-full object-cover" src={imagePreview} alt="Preview" />
+                                ) : (
+                                    <FontAwesomeIcon icon={faCamera} size="2x" color='grey' />
+                                )}
                             </div>
                             <div className='flex flex-col justify-center gap-4'>
                                 <input className="border-dashed" type="file" name="image" id="image" placeholder='Choose Image'
-                                    onChange={(e) => { setImageUpload(e.target.files[0]); }} />
+                                   onChange={handleImageChange}  />
                                 <p className=' text-gray-400'>&gt; Or choose one of our defaults</p>
                             </div>
                         </div>
 
                         <div>
                             <label htmlFor="location" className='block my-10 pt-10 text-black font-bold text-2xl'>Add your location</label>
-                            <input className=" border-b-2 w-full py-2 text-xl" type="text" name="location" id="location" placeholder='Enter a location'
+                            <input className=" border-b-2 w-full py-2 px-2 text-xl" type="text" name="location" id="location" placeholder='Enter a location'
                                 onChange={(e) => { setLocationData(e.target.value); }} />
                         </div>
                         <button onClick={handleSubmit} className=" bg-pink-500 hover:bg-pink-700 text-white p-3 px-24 my-10 rounded-xl " type="submit">Next</button>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo2 from '../assets/logo2.png';
 import axios from 'axios';
 import { useLocation, useNavigate } from "react-router-dom";
+import { makeRequest } from '../axios';
 
 
 function CreateAcc() {
@@ -62,7 +63,7 @@ function CreateAcc() {
             // for (let pair of data.entries()) {
             //     console.log(pair[0] + ": " + pair[1]);
             // }
-            const submitResponse = await axios.post('http://localhost:8000/api/user/create', Data);
+            const submitResponse = await makeRequest.post('user/create', Data);
             console.log('Response:', submitResponse.data);
 
 

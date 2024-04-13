@@ -5,6 +5,7 @@ import FooterTable from '../components/footerTable'
 import Footer from '../components/footer'
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
+import { makeRequest } from '../axios'
 
 
 
@@ -19,7 +20,7 @@ function Home() {
     useEffect(() => {
         const sendMail = async () => {
             try {
-                const submitResponse = await axios.post('http://localhost:8000/api/user/sendmail', emailData);
+                const submitResponse = await makeRequest.post('user/sendmail', emailData);
                 console.log('Response:', submitResponse.data);
             } catch (error) {
                 console.error('Error sending mail:', error);

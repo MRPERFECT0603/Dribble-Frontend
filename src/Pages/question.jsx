@@ -6,6 +6,7 @@ import dribble2 from "../assets/dribble-icon-2.png"
 import dribble3 from "../assets/dribble-icon-3.png"
 import axios from 'axios';
 import { useLocation, useNavigate, Link, Navigate } from "react-router-dom";
+import { makeRequest } from '../axios';
 
 
 function QuestionPage() {
@@ -17,19 +18,38 @@ function QuestionPage() {
     const [showText1, setShowText1] = useState(false);
     const [showText2, setShowText2] = useState(false);
     const [showText3, setShowText3] = useState(false);
+    const [formData, setFormData] = useState({
+        desc1: { value: "I'm a designer looking to share my work", checked: false },
+        desc2: { value: "I'm looking to hire a designer", checked: false },
+        desc3: { value: "I'm looking for design inspiration", checked: false }
+    });
 
-    // const handleSubmit = async(e) => {
-    //     e.preventDefault();
-    //     console.log(email);
-    //     const desc = {
-    //         username: username,
-    //         description: desc
-    //     };
-    //     const response = await axios.post('http://localhost:8000/api/user/create', desc);
+    const handleChange = (e) => {
+        const { name, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: { ...formData[name], checked: checked }
+        });
+    };
 
-    //     navigate('/home', { state: { email: email } });
 
-    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(email);
+        const selectedDesc = Object.values(formData).filter(desc => desc.checked).map(desc => desc.value).shift();
+        const desc = {
+            username: username,
+            description: selectedDesc
+        };
+        try {
+            const response = await makeRequest.post('user/desc', desc);
+            console.log('Response:', response.data);
+            navigate('/home', { state: { email: email } });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+    }
 
     $(document).on('change', 'input[type="checkbox"]', function () {
         const $parent = $(this).closest('.fixed-container');
@@ -118,7 +138,7 @@ function QuestionPage() {
                         <p className="flex justify-center px-8 text-base py-3 text-gray-500 font-light text-center">
                             {showText1 && "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration."}
                         </p>
-                        <div className="flex justify-center pb-2 "><input type="checkbox" /></div>
+                        <div className="flex justify-center pb-2 "><input type="checkbox" name="desc1" checked={formData.desc1.checked} onChange={handleChange} /></div>
                     </div>
                 </div>
                 <div className="fixed-container w-80 h-80 overflow-visible container-2">
@@ -132,7 +152,7 @@ function QuestionPage() {
                         <p className="flex justify-center px-8 text-base py-3 text-gray-500 font-light text-center">
                             {showText2 && "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration."}
                         </p>
-                        <div className="flex justify-center pb-2"><input type="checkbox" /></div>
+                        <div className="flex justify-center pb-2"><input type="checkbox" name="desc2" checked={formData.desc2.checked} onChange={handleChange} /></div>
                     </div>
                 </div>
                 <div className="fixed-container w-80 h-80 overflow-visible container-3">
@@ -146,23 +166,18 @@ function QuestionPage() {
                         <p className=" flex justify-center px-8 text-base py-3 text-gray-500 font-light text-center">
                             {showText3 && "With over 7 million shots from a vast community of designers, Dribbble is the leading source for design inspiration."}
                         </p>
-                        <div className="flex justify-center pb-2"><input type="checkbox" /></div>
+                        <div className="flex justify-center pb-2"><input type="checkbox" name="desc3" checked={formData.desc3.checked} onChange={handleChange} /></div>
                     </div>
                 </div>
             </div>
-            <Link to={{
-                pathname: "/home",
-                state: {
-                    email: email
-                }
-            }
-            }>
-                <div className='flex mt-20 mx-auto'>
 
-                    <button className=" btn bg-pink-300 text-white p-3 px-12 my-10 rounded-xl mx-auto" type="submit">Create Account</button>
 
-                </div>
-            </Link>
+            <div className='flex mt-20 mx-auto'>
+
+                <button onClick={handleSubmit} className=" btn bg-pink-300 text-white p-3 px-12 my-10 rounded-xl mx-auto" type="submit">Create Account</button>
+
+            </div>
+
         </div>
     );
 }

@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { makeRequest } from '../axios';
 function SignupRightPanel() {
 
     const navigate = useNavigate();
@@ -24,9 +25,9 @@ function SignupRightPanel() {
         e.preventDefault();
         try {
             console.log(formData);
-            const response = await axios.post('http://localhost:8000/api/user/register', formData);
+            const response = await makeRequest.post('user/register', formData);
             console.log('Response:', response.data);
-            navigate('/acc', { state: { username: formData.username  , email : formData.email} });
+            navigate('/acc', { state: { username: formData.username, email: formData.email } });
         } catch (error) {
             console.error('Error:', error);
         }

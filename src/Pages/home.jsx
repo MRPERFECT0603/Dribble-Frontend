@@ -18,6 +18,7 @@ function Home() {
         email: email
     };
     useEffect(() => {
+        window.scrollTo(0, 0);
         const sendMail = async () => {
             try {
                 const submitResponse = await makeRequest.post('user/sendmail', emailData);
@@ -34,7 +35,7 @@ function Home() {
         <div>
 
             <Navbar />
-            <Hero email = {email}/>
+            <Hero email={email} />
             <FooterTable />
             <Footer />
         </div>

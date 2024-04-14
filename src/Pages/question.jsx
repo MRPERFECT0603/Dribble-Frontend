@@ -126,9 +126,9 @@ function QuestionPage() {
                     Select the options that best describe you. Don't worry, you can explore other options later.
                 </p>
             </div>
-            <div className="flex px-10 flex-wrap h-auto gap-8 justify-center">
+            <div className="flex  flex-col lg:flex-row  px-10  h-auto  gap-20 justify-center items-center">
                 <div className="fixed-container w-80 h-80 overflow-visible container-1">
-                    <div className="flex flex-col border-gray-400 border basis-1/4 rounded-xl borderContainer">
+                    <div className="flex flex-col border-gray-400 border basis-1/4 rounded-xl borderContainer ">
                         <div className="flex h-3/4">
                             <img className="w-fit object-contain mb-20" src={dribble1} alt="" />
                         </div>
@@ -142,7 +142,7 @@ function QuestionPage() {
                     </div>
                 </div>
                 <div className="fixed-container w-80 h-80 overflow-visible container-2">
-                    <div className="flex flex-col border-gray-400 border basis-1/4 rounded-xl borderContainer">
+                    <div className="flex flex-col border-gray-400 border basis-1/4 rounded-xl borderContainer ">
                         <div className="flex h-3/4">
                             <img className="w-fit object-contain mb-20" src={dribble2} alt="" />
                         </div>
@@ -156,7 +156,7 @@ function QuestionPage() {
                     </div>
                 </div>
                 <div className="fixed-container w-80 h-80 overflow-visible container-3">
-                    <div className="flex flex-col border-gray-400 border basis-1/4 rounded-xl borderContainer">
+                    <div className="flex flex-col border-gray-400 border basis-1/4 rounded-xl borderContainer ">
                         <div className="flex h-3/4">
                             <img className="w-fit object-contain mb-20" src={dribble3} alt="" />
                         </div>

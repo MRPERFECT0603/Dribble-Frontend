@@ -34,10 +34,10 @@ function Navbar() {
                         </ul>
                     </div>
                 </div>
-                <div className='flex h-20 border-b-2 pl-5 gap-2 justify-between' >
-                    <div className='flex  items-center bg-gray-300 rounded-xl my-4 mr-4 '>
+                <div className='flex h-20 border-b-2  gap-2 justify-between ' >
+                    <div className='flex  items-center bg-gray-300 rounded-xl my-4 md:mr-4 w-1/2 '>
                         <FontAwesomeIcon icon={faSearch} size="lg" color='grey' className='ml-4' />
-                        <input className='bg-gray-300 pt-2 pb-2 pl-2 rounded-xl' type="text" name="" id="" placeholder='search' />
+                        <input className='bg-gray-300 pt-2 pb-2 pl-2 rounded-xl w-1/2 md:w-full' type="text" name="" id="" placeholder='search' />
                     </div>
                     <div className='flex gap-2 pr-4'>
                         <div onClick={handleMenu} className='flex items-center justify-center lg:hidden'>
@@ -53,7 +53,7 @@ function Navbar() {
                         <div className='flex items-center justify-center'>
                             <FontAwesomeIcon icon={faUserCircle} size="lg" color='grey' />
                         </div>
-                        <div className='flex items-center justify-center'>
+                        <div className='hidden lg:flex items-center justify-center'>
                             <button className=" bg-pink-500 hover:bg-pink-700 text-white p-3 px-2 rounded-xl" type="submit">Upload</button>
                         </div>
                     </div>
@@ -67,6 +67,9 @@ function Navbar() {
                     <li className='px-4 py-1 text-gray-500 border-b-2'>Go Pro</li>
                     <li className='px-4 py-1 text-gray-500 border-b-2'>Hire Designers</li>
                 </ul>
+                <div className='border-b-2 pb-1'>
+                    <button className=" bg-pink-500 hover:bg-pink-700 text-white p-3 px-2 rounded-xl py-1  mt-3" type="submit">Upload</button>
+                </div>
             </div>}
 
         </div>

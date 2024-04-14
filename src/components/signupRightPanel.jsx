@@ -47,7 +47,7 @@ function SignupRightPanel() {
                     <h3 className='text-s font-light text-red my-5'>
                         {showText && "Username has already been taken"}</h3>
                 </div>
-                <div className='pr-4 md:pr-20 mx-auto'>
+                <div className=' md:pr-20 mx-auto'>
                     <form className='mr-4 md:mr-10' onSubmit={handleSubmit}>
                         <div className='flex-col md:flex md:flex-row md:justify-between py-5'>
                             <div className='w-full md:w-1/2 md:pr-2'>
@@ -65,7 +65,7 @@ function SignupRightPanel() {
                         </div>
                         <div className='py-5'>
                             <label htmlFor="email" className='block my-1'>Email</label>
-                            <input className="bg-silver p-2 rounded-md w-full" type="text" name="email" id="email" placeholder="Enter your email"
+                            <input className="bg-silver p-2 rounded-md w-full" type="email" name="email" id="email" placeholder="Enter your email"
                                 value={formData.email}
                                 onChange={handleChange} />
                         </div>
@@ -76,12 +76,14 @@ function SignupRightPanel() {
                                 onChange={handleChange} />
                         </div>
                         <div className='flex gap-3'>
-                            <input className='flex mb-12' type="checkbox" />
+                            <input className='flex mb-12' type="checkbox" required />
                             <p className='text-wrap  text-gray-600 font-light text-base'>
                                 Creating an account means you're okay with our <span className='text-blue'>Terms of Service, Privacy Policy,</span> and our default<span className='text-blue'> Notification Settings.</span>
                             </p>
                         </div>
-                        <button className="bg-pink-500 hover:bg-pink-700 text-white p-3 px-12 my-10 rounded-xl" type="submit">Create Account</button>
+                        <div className='flex justify-center md:justify-start'>
+                            <button className="bg-pink-500 hover:bg-pink-700 text-white p-3 px-12 my-10 rounded-xl" type="submit">Create Account</button>
+                        </div>
                     </form>
                     <div>
                         <p className='text-wrap  text-gray-600 font-light text-xs'>This site is protected by reCAPTCHA and the Google <span className='text-blue'>Privacy Policy</span> and <span className='text-blue'>Terms of Service</span> apply.</p>

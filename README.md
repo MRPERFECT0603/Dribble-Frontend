@@ -1,7 +1,9 @@
 # Full Stack Project
 
 ## Description
-This full-stack project aims to create a web application where users can input data through a user-friendly frontend interface. The project involves designing the frontend based on provided design references, creating a database schema to store user data, and developing Node.js backend APIs to connect the frontend with the database.
+This full-stack web application is designed to provide users with a seamless experience for inputting data through an intuitive frontend interface. By adhering to the provided design references, the project ensures consistency and user familiarity. The application architecture involves the creation of a robust database schema to efficiently store user data. Leveraging Node.js, the backend APIs are developed to seamlessly connect the frontend with the database, facilitating smooth data flow and interaction.
+
+
 
 ## Note
 Please note that this project utilizes various technologies and services, including:
